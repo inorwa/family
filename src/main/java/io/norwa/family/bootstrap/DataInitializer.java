@@ -12,6 +12,9 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Slf4j
 @RequiredArgsConstructor
 @Component
@@ -28,18 +31,23 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
 
     @Transactional
     public void initData(){
-        log.info("---DATA INITI---");
-        Parent parent = new Parent(new ParentPK("Jan","Kowalski"),"father");
-        Child child = new Child();
-        child.setParent(parent);
-        child.setFirstName("Hieronim");
-        child.setLastName("Kowalski");
+        log.info("---DATA INIT---");
 
+        List<Child> childs = new ArrayList<>();
 
+        childs.add(new Child("Hieronim","Kowalski"));
+        childs.add(new Child("Rafał","Kowalski"));
+
+        Parent parent = new Parent(new ParentPK("Jan","Kowalski"),"father",new ArrayList<>());
         parentRepository.save(parent);
 
-        childRepository.save(child);
+        for (Child child : childs) {
+            child.setParent(parent);
+            childRepository.save(child);
+        }
 
-        log.info("---DATA INITI END---");
+
+
+        log.info("---DATA INIT END---");
     }
 }

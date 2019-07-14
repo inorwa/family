@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 public class Child {
 
@@ -29,5 +27,17 @@ public class Child {
     },foreignKey = @ForeignKey(name = "child_parent_fkey"))
     private Parent parent;
 
-    private String descryption;
+    public Child() {
+    }
+
+    public Child(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Child(String firstName, String lastName, Parent parent) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.parent = parent;
+    }
 }
