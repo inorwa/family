@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.norwa</groupId>
-    <artifactId>spring5train</artifactId>
+    <artifactId>family</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring5train</name>
     <description>Demo project for Spring Boot</description>
